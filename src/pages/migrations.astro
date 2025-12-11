@@ -1,8 +1,4 @@
 ---
-import {actions} from 'astro:actions';
-import {directus} from "@/server/directus.ts";
-import {readItems} from "@directus/sdk";
-
 const itemsMenu = [
   {title: 'Menú', key: 'menu'},
   {title: 'Contact', key: 'contact'},
@@ -243,6 +239,8 @@ const itemsMenu = [
   <div id="finish" class="section">
    <h1>¡Migración completada!</h1>
    <p>Has completado todas las migraciones necesarias.</p>
+   <h3>TAMBIEN ENCUENTRAS LOS ARCHIVOS A ELIMINAR EN EL README.MD DEL PROYECTO (POSIBLEMENTE ELIMINANDO ARCHIVOS SE DAÑE
+    ESTA PAGINA)</h3>
    <p>Para que no quede BASURA en el proyecto, elimina los siguientes Archivos:</p>
    <ul>
     <li><code>/src/actions</code></li>

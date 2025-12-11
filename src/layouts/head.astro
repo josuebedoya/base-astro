@@ -1,22 +1,64 @@
 ---
-import { directus } from "@/server/directus";
+import directus from "@/server/directus";
 import readFile from "@/server/readFile";
-import { readSettings } from "@directus/sdk";
-const { title, description } = Astro.props;
-const siteSettings = await directus.request(readSettings());
-const favicon = await readFile(siteSettings?.public_favicon,title) || '/assets/img/logos/favicon.png';
+import {readSettings} from "@directus/sdk";
 import '@/styles/main.css';
+
+const {title, description, image} = Astro.props;
+const siteSettings = await directus.request(readSettings());
+const favicon = await readFile({id: siteSettings?.public_favicon, name: title});
+const img = image.startsWith('http') ? image : await readFile({id: image, name: title});
+
+const url = Astro.request.url;
 ---
 
 <head>
- <meta charset="UTF-8" />
- <link
-   rel="icon"
-   type="image/png"
-   href={favicon}
- />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <meta name="description" content={description} />
- <link rel="canonical" href={Astro.request.url} />
+ <meta charset="UTF-8"/>
+
+ <!-- Favicon -->
+ <link rel="icon" type="image/png" href={favicon}/>
+
+ <!-- Viewport -->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+ <!-- SEO Básico -->
  <title>{title}</title>
+ <meta name="description" content={description}/>
+
+ <!-- Canonical URL -->
+ <link rel="canonical" href={url}/>
+
+ <!-- Indexado y seguimiento -->
+ <meta name="robots" content="index, follow"/>
+ <meta name="googlebot" content="index, follow"/>
+
+ <!-- Keywords (no esenciales pero útiles si son reales) -->
+ <!-- <meta name="keywords" content="palabras, clave, relevantes" /> -->
+
+ <!-- Performance: DNS Prefetch (si usas estos servicios en tu sitio) -->
+ <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+ <link rel="dns-prefetch" href="//cdnjs.cloudflare.com"/>
+ <link rel="dns-prefetch" href="//cdn.jsdelivr.net"/>
+
+ <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+ <meta property="og:title" content={title}/>
+ <meta property="og:description" content={description}/>
+ <meta property="og:image" content={img}/>
+ <meta property="og:url" content={url}/>
+ <meta property="og:site_name" content={siteSettings?.public_project_name}/>
+ <meta property="og:type" content="website"/>
+
+ <!-- Twitter Cards -->
+ <meta name="twitter:card" content="summary_large_image"/>
+ <meta name="twitter:title" content={title}/>
+ <meta name="twitter:description" content={description}/>
+ <meta name="twitter:image" content={img}/>
+
+ <!-- Others -->
+ <meta http-equiv="Content-Language" content="es"/>
+ <meta name="theme-color" content="#ffffff"/>
+ <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  {img && (
+    <link rel="preload" as="image" href={img}/>)}
 </head>

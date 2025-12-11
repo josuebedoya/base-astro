@@ -1,5 +1,5 @@
 import type {APIContext} from 'astro';
-import {directus} from '@/server/directus'
+import directus from '@/server/directus'
 import {readItems} from "@directus/sdk";
 import {SITE_URL} from "astro:env/client";
 

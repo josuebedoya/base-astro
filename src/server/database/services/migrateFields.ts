@@ -1,4 +1,4 @@
-import {directus} from "@/server/directus";
+import directus from "@/server/directus";
 import {createField} from '@directus/sdk';
 
 export async function migrateFields(collection: string, fields: any[]) {

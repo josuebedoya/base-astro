@@ -1,4 +1,4 @@
-import {directus} from '@/server/directus';
+import directus from '@/server/directus';
 import {createCollection} from '@directus/sdk';
 
 export async function migrateModel(collection: string, schema: object) {
