@@ -17,10 +17,29 @@ export const commonFields = {
       interface: 'datetime',
       display: "datetime",
       field: "date_created",
-      special: [
-        "date-created",
-        "date-updated"
-      ],
+      special: ["date-created"],
+      display_options: {
+        "relative": true
+      },
+      readonly: true,
+      width: "half",
+      required: false,
+      hidden: true,
+    }
+  },
+  date_updated: {
+    field: 'date_updated',
+    type: 'timestamp',
+    schema: {
+      type: 'timestamp',
+      name: 'Fecha de Actulización',
+      data_type: "timestamp with time zone",
+    },
+    meta: {
+      interface: 'datetime',
+      display: "datetime",
+      field: "date_updated",
+      special: ["date-updated"],
       display_options: {
         "relative": true
       },

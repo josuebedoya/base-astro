@@ -47,6 +47,7 @@ const fieldLink = {
 const fields = [
   commonFields.status,
   commonFields.date_created,
+  commonFields.date_updated,
   fieldTitle,
   fieldLink,
   {
