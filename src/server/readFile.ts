@@ -8,6 +8,14 @@ type Params = {
   params?: Record<string, any>;
 }
 
+/**
+ * @id - ID of the media file (From directus).
+ * @name - Optional name for the file.
+ * @params - Optional query parameters for the URL.
+ *
+ * @return URL string to access the media file.
+ */
+
 const readFile = async ({id, name, params}: Params): Promise<string> => {
   try {
     if (!id) throw new Error('ID is required');
