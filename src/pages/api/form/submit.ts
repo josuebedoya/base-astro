@@ -1,4 +1,4 @@
-import { directus } from '@/server/directus';
+import directus from '@/server/directus';
 import { createItems } from "@directus/sdk";
 import type { APIRoute } from "astro";
 import { createAssessment } from "@/server/recaptcha";
